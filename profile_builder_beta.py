@@ -2,7 +2,7 @@
 
 import streamlit as st
 
-st.set_page_config(page_title="🏗️ Profile Builder (Beta)", layout="wide")
+st.set_page_config(page_title="🏗️ Profile Builder (Beta Compact)", layout="wide")
 
 st.title("📄 Build Your Profile")
 
@@ -22,28 +22,29 @@ with st.form("profile_form"):
 
     with col2:
         st.subheader("🏘️ Accessory Unit")
-        accessory_unit = st.selectbox("Does the property have an accessory unit?", ["Yes", "No"])
+        accessory_unit = st.selectbox("Does the property have an accessory unit?", ["No", "Yes"])
         accessory_unit_has_separation = accessory_unit_kitchen_present = accessory_unit_bathroom_present = "No"
         proposed_market_rent = 0.0
 
         if accessory_unit == "Yes":
-            accessory_unit_has_separation = st.selectbox("Interior separation from primary unit?", ["Yes", "No"])
-            accessory_unit_kitchen_present = st.selectbox("Kitchen (fridge, cooking appliance, sink)?", ["Yes", "No"])
-            accessory_unit_bathroom_present = st.selectbox("Bathroom present?", ["Yes", "No"])
+            with st.expander("Accessory Unit Details"):
+                accessory_unit_has_separation = st.radio("Interior separation from primary unit?", ["No", "Yes"], horizontal=True)
+                accessory_unit_kitchen_present = st.radio("Kitchen (fridge, stove, sink)?", ["No", "Yes"], horizontal=True)
+                accessory_unit_bathroom_present = st.radio("Bathroom present?", ["No", "Yes"], horizontal=True)
 
-            if (
-                num_units == 1 and
-                accessory_unit_has_separation == "Yes" and
-                accessory_unit_kitchen_present == "Yes" and
-                accessory_unit_bathroom_present == "Yes"
-            ):
-                proposed_market_rent = st.number_input(
-                    "Proposed Market Rent ($/month)",
-                    min_value=0.0,
-                    max_value=9999999999.0,
-                    format="%.2f",
-                    help="Enter the estimated rent this accessory unit could earn monthly."
-                )
+                if (
+                    num_units == 1 and
+                    accessory_unit_has_separation == "Yes" and
+                    accessory_unit_kitchen_present == "Yes" and
+                    accessory_unit_bathroom_present == "Yes"
+                ):
+                    proposed_market_rent = st.number_input(
+                        "Proposed Market Rent ($/month)",
+                        min_value=0.0,
+                        max_value=9999999999.0,
+                        format="%.2f",
+                        help="Enter the estimated rent this accessory unit could earn monthly."
+                    )
 
         st.subheader("💵 Financial Information")
         cash_available_to_close = st.number_input("Cash Available to Close ($)", min_value=0.0, max_value=9999999999.0, format="%.2f")
