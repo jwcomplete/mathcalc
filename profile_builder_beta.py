@@ -10,7 +10,7 @@ st.markdown("""
         max-width: 400px;
     }
     .stNumberInput input {
-        max-width: 260px;
+        width: 180px;
     }
     div[data-baseweb="select"] {
         max-width: 180px;
