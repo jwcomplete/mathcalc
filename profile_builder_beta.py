@@ -46,24 +46,24 @@ with col1:
         num_units = st.selectbox("# of Units", [1, 2, 3, 4], key="num_units")
 
     st.markdown("### 🏘️ Accessory Unit")
-    col_acc_q, col_acc_a = st.columns([3, 1])
+    col_acc_q, col_acc_a = st.columns([5, 1])
     with col_acc_q:
         st.markdown("**Does the property have an accessory unit?**")
     with col_acc_a:
         accessory_unit = st.toggle(" ", value=False, key="accessory_unit")
 
     if accessory_unit:
-        col_sep_q, col_sep_a = st.columns([3, 1])
+        col_sep_q, col_sep_a = st.columns([5, 1])
         with col_sep_q:
             st.markdown("**Interior separation from primary unit?**")
         with col_sep_a:
             interior_separation = st.toggle(" ", value=False, key="interior_separation")
-        col_kitch_q, col_kitch_a = st.columns([3, 1])
+        col_kitch_q, col_kitch_a = st.columns([5, 1])
         with col_kitch_q:
             st.markdown("**Kitchen with fridge, stove, sink?**")
         with col_kitch_a:
             has_kitchen = st.toggle(" ", value=False, key="has_kitchen")
-        col_bath_q, col_bath_a = st.columns([3, 1])
+        col_bath_q, col_bath_a = st.columns([5, 1])
         with col_bath_q:
             st.markdown("**Bathroom present?**")
         with col_bath_a:
