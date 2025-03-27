@@ -33,14 +33,14 @@ with col1:
     occupancy_type = st.selectbox("Intended Occupancy", ["Owner-Occupied", "Second Home", "Investment"])
 
     # Flood Zone
-    flood_col1, flood_col2 = st.columns([2, 1])
+    flood_col1, flood_col2 = st.columns([1, 1])
     with flood_col1:
         st.write("Flood Zone")
     with flood_col2:
         flood_zone = st.selectbox("", ["Yes", "No"], key="flood_zone")
 
     # Number of Units
-    units_col1, units_col2 = st.columns([2, 1])
+    units_col1, units_col2 = st.columns([1, 1])
     with units_col1:
         st.write("# of units")
     with units_col2:
@@ -54,7 +54,7 @@ with col2:
 
     st.markdown("### 🏘️ Accessory Unit")
     # Accessory Unit
-    accessory_col1, accessory_col2 = st.columns([2, 1])
+    accessory_col1, accessory_col2 = st.columns([1, 1])
     with accessory_col1:
         st.write("Does the property have an accessory unit?")
     with accessory_col2:
@@ -62,21 +62,21 @@ with col2:
 
     if accessory_unit == "Yes":
         # Interior Separation
-        separation_col1, separation_col2 = st.columns([2, 1])
+        separation_col1, separation_col2 = st.columns([1, 1])
         with separation_col1:
             st.write("Interior separation from primary unit?")
         with separation_col2:
             interior_separation = st.selectbox("", ["No", "Yes"], key="interior_separation")
 
         # Kitchen
-        kitchen_col1, kitchen_col2 = st.columns([2, 1])
+        kitchen_col1, kitchen_col2 = st.columns([1, 1])
         with kitchen_col1:
             st.write("Kitchen with fridge, stove, sink?")
         with kitchen_col2:
             has_kitchen = st.selectbox("", ["No", "Yes"], key="has_kitchen")
 
         # Bathroom
-        bathroom_col1, bathroom_col2 = st.columns([2, 1])
+        bathroom_col1, bathroom_col2 = st.columns([1, 1])
         with bathroom_col1:
             st.write("Bathroom present?")
         with bathroom_col2:
