@@ -34,7 +34,7 @@ with col1:
     with col_val:
         estimated_value = st.number_input("Estimated Value ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
     with col_occ:
-        occupancy_type = st.selectbox("Intended Occupancy", ["Owner-Occupied", "Second Home", "Investment"])
+        occupancy_type = st.selectbox("Occupancy", ["Owner-Occupied", "Second Home", "Investment"])
     with col_flood:
         flood_zone = st.selectbox("Flood Zone", ["Yes", "No"], key="flood_zone")
     with col_units:
