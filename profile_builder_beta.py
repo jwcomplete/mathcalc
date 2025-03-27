@@ -41,20 +41,39 @@ with col1:
         num_units = st.selectbox("# of Units", [1, 2, 3, 4], key="num_units")
 
     st.markdown("### 🏘️ Accessory Unit")
-    accessory_unit = st.selectbox("Does the property have an accessory unit?", ["No", "Yes"], key="accessory_unit")
+    col_acc_q, col_acc_a = st.columns([3, 1])
+    with col_acc_q:
+        st.markdown("**Does the property have an accessory unit?**")
+    with col_acc_a:
+        accessory_unit = st.selectbox(" ", ["No", "Yes"], key="accessory_unit")
 
     if accessory_unit == "Yes":
-        interior_separation = st.selectbox("Interior separation from primary unit?", ["No", "Yes"], key="interior_separation")
-        has_kitchen = st.selectbox("Kitchen with fridge, stove, sink?", ["No", "Yes"], key="has_kitchen")
-        has_bathroom = st.selectbox("Bathroom present?", ["No", "Yes"], key="has_bathroom")
+        col_sep_q, col_sep_a = st.columns([3, 1])
+        with col_sep_q:
+            st.markdown("**Interior separation from primary unit?**")
+        with col_sep_a:
+            interior_separation = st.selectbox(" ", ["No", "Yes"], key="interior_separation")
+        col_kitch_q, col_kitch_a = st.columns([3, 1])
+        with col_kitch_q:
+            st.markdown("**Kitchen with fridge, stove, sink?**")
+        with col_kitch_a:
+            has_kitchen = st.selectbox(" ", ["No", "Yes"], key="has_kitchen")
+        col_bath_q, col_bath_a = st.columns([3, 1])
+        with col_bath_q:
+            st.markdown("**Bathroom present?**")
+        with col_bath_a:
+            has_bathroom = st.selectbox(" ", ["No", "Yes"], key="has_bathroom")
 
         if all(ans == "Yes" for ans in [interior_separation, has_kitchen, has_bathroom]) and num_units == 1:
             proposed_rent = st.number_input("Proposed Market Rent for Accessory Unit ($)", min_value=0.0)
 
 with col2:
     st.markdown("### 💵 Financial Information")
-    cash_available = st.number_input("Cash Available to Close ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
-    qualifying_income = st.number_input("Qualifying Income ($/year)", min_value=0.0, max_value=9999999999.00, step=1000.0)
-    monthly_debts = st.number_input("Included Monthly Debts ($)", min_value=0.0, max_value=9999999999.00, step=100.0)
+    col_f1, col_f2 = st.columns([1, 1])
+    with col_f1:
+        cash_available = st.number_input("Cash Available to Close ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
+        monthly_debts = st.number_input("Included Monthly Debts ($)", min_value=0.0, max_value=9999999999.00, step=100.0)
+    with col_f2:
+        qualifying_income = st.number_input("Qualifying Income ($/year)", min_value=0.0, max_value=9999999999.00, step=1000.0)
 
 st.button("✅ Save Profile")
