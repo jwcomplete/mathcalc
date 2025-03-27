@@ -48,9 +48,21 @@ with col1:
         accessory_unit = st.selectbox(" ", ["No", "Yes"], key="accessory_unit")
 
     if accessory_unit == "Yes":
-        interior_separation = st.selectbox("Interior separation from primary unit?", ["No", "Yes"], key="interior_separation")
-        has_kitchen = st.selectbox("Kitchen with fridge, stove, sink?", ["No", "Yes"], key="has_kitchen")
-        has_bathroom = st.selectbox("Bathroom present?", ["No", "Yes"], key="has_bathroom")
+        col_sep_q, col_sep_a = st.columns([3, 1])
+        with col_sep_q:
+            st.markdown("**Interior separation from primary unit?**")
+        with col_sep_a:
+            interior_separation = st.selectbox(" ", ["No", "Yes"], key="interior_separation")
+        col_kitch_q, col_kitch_a = st.columns([3, 1])
+        with col_kitch_q:
+            st.markdown("**Kitchen with fridge, stove, sink?**")
+        with col_kitch_a:
+            has_kitchen = st.selectbox(" ", ["No", "Yes"], key="has_kitchen")
+        col_bath_q, col_bath_a = st.columns([3, 1])
+        with col_bath_q:
+            st.markdown("**Bathroom present?**")
+        with col_bath_a:
+            has_bathroom = st.selectbox(" ", ["No", "Yes"], key="has_bathroom")
 
         if all(ans == "Yes" for ans in [interior_separation, has_kitchen, has_bathroom]) and num_units == 1:
             proposed_rent = st.number_input("Proposed Market Rent for Accessory Unit ($)", min_value=0.0)
