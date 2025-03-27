@@ -15,7 +15,12 @@ st.markdown("""
     div[data-baseweb="select"] {
         max-width: 180px;
     }
-    </style>
+    .stToggle {
+        display: flex;
+        align-items: flex-start !important;
+        margin-top: 0.35rem;
+    }
+</style>
 """, unsafe_allow_html=True)
 
 st.title("📄 Build Your Profile")
