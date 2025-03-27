@@ -34,7 +34,7 @@ with col1:
     property_address = st.text_input("Property Address", max_chars=75)
     estimated_value = st.number_input("Estimated Value ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
     occupancy_type = st.selectbox("Intended Occupancy", ["Owner-Occupied", "Second Home", "Investment"])
-    
+
     flood_col1, flood_col2 = st.columns([2, 1])
     with flood_col1:
         st.write("Flood Zone")
