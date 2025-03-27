@@ -41,7 +41,7 @@ with col1:
         num_units = st.selectbox("# of Units", [1, 2, 3, 4], key="num_units")
 
     st.markdown("### 🏘️ Accessory Unit")
-    col_acc_q, col_acc_a = st.columns([3, 1])
+    col_acc_q, col_acc_a = st.columns([3, 3])
     with col_acc_q:
         st.markdown("**Does the property have an accessory unit?**")
     with col_acc_a:
