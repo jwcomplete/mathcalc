@@ -19,7 +19,7 @@ st.markdown("""
     .stToggle {
         display: flex;
         align-items: flex-start !important;
-        margin-top: -0.25rem;
+        margin-top: -1.25rem;
     }
 </style>
 """, unsafe_allow_html=True)
