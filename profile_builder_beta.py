@@ -13,10 +13,7 @@ st.markdown("""
         max-width: 200px; /* Adjust based on numeric field width */
     }
     .stSelectbox [data-baseweb="select"] {
-        max-width: 300px; /* Adjust based on longest dropdown option */
-    }
-    .short-select [data-baseweb="select"] {
-        max-width: 150px; /* Shorter select boxes for Yes/No and # of units */
+        max-width: 150px; /* Adjust based on longest dropdown option */
     }
     </style>
     """, unsafe_allow_html=True)
@@ -35,17 +32,13 @@ with col1:
     estimated_value = st.number_input("Estimated Value ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
     occupancy_type = st.selectbox("Intended Occupancy", ["Owner-Occupied", "Second Home", "Investment"])
 
-    flood_col1, flood_col2 = st.columns([2, 1])
-    with flood_col1:
-        st.write("Flood Zone")
-    with flood_col2:
-        flood_zone = st.selectbox("", ["Yes", "No"], key="flood_zone")
+    flood_col = st.columns([2, 1])
+    flood_col[0].write("Flood Zone")
+    flood_zone = flood_col[1].selectbox("", ["Yes", "No"], key="flood_zone")
 
-    units_col1, units_col2 = st.columns([2, 1])
-    with units_col1:
-        st.write("# of units")
-    with units_col2:
-        num_units = st.selectbox("", [1, 2, 3, 4], key="num_units")
+    units_col = st.columns([2, 1])
+    units_col[0].write("# of units")
+    num_units = units_col[1].selectbox("", [1, 2, 3, 4], key="num_units")
 
 with col2:
     st.markdown("### 💵 Financial Information")
@@ -54,30 +47,22 @@ with col2:
     monthly_debts = st.number_input("Included Monthly Debts ($)", min_value=0.0, max_value=9999999999.00, step=100.0)
 
     st.markdown("### 🏘️ Accessory Unit")
-    accessory_col1, accessory_col2 = st.columns([2, 1])
-    with accessory_col1:
-        st.write("Does the property have an accessory unit?")
-    with accessory_col2:
-        accessory_unit = st.selectbox("", ["No", "Yes"], key="accessory_unit")
-    
+    accessory_col = st.columns([2, 1])
+    accessory_col[0].write("Does the property have an accessory unit?")
+    accessory_unit = accessory_col[1].selectbox("", ["No", "Yes"], key="accessory_unit")
+
     if accessory_unit == "Yes":
-        separation_col1, separation_col2 = st.columns([2, 1])
-        with separation_col1:
-            st.write("Interior separation from primary unit?")
-        with separation_col2:
-            interior_separation = st.selectbox("", ["No", "Yes"], key="interior_separation")
+        separation_col = st.columns([2, 1])
+        separation_col[0].write("Interior separation from primary unit?")
+        interior_separation = separation_col[1].selectbox("", ["No", "Yes"], key="interior_separation")
 
-        kitchen_col1, kitchen_col2 = st.columns([2, 1])
-        with kitchen_col1:
-            st.write("Kitchen with fridge, stove, sink?")
-        with kitchen_col2:
-            has_kitchen = st.selectbox("", ["No", "Yes"], key="has_kitchen")
+        kitchen_col = st.columns([2, 1])
+        kitchen_col[0].write("Kitchen with fridge, stove, sink?")
+        has_kitchen = kitchen_col[1].selectbox("", ["No", "Yes"], key="has_kitchen")
 
-        bathroom_col1, bathroom_col2 = st.columns([2, 1])
-        with bathroom_col1:
-            st.write("Bathroom present?")
-        with bathroom_col2:
-            has_bathroom = st.selectbox("", ["No", "Yes"], key="has_bathroom")
+        bathroom_col = st.columns([2, 1])
+        bathroom_col[0].write("Bathroom present?")
+        has_bathroom = bathroom_col[1].selectbox("", ["No", "Yes"], key="has_bathroom")
 
         if all(ans == "Yes" for ans in [interior_separation, has_kitchen, has_bathroom]) and num_units == 1:
             proposed_rent = st.number_input("Proposed Market Rent for Accessory Unit ($)", min_value=0.0)
