@@ -3,86 +3,53 @@ import streamlit as st
 
 st.set_page_config(page_title="Build Your Profile", layout="wide")
 
-# Custom CSS to constrain field widths
+# Custom CSS for input widths
 st.markdown("""
     <style>
-    .stTextInput [data-baseweb="input"] {
-        max-width: 400px; /* Adjust based on estimated character length */
+    div[data-baseweb="input"] input {
+        max-width: 400px;
     }
-    .stNumberInput [data-baseweb="input"] {
-        max-width: 200px; /* Adjust based on numeric field width */
+    .stNumberInput input {
+        max-width: 260px;
     }
-    .stSelectbox [data-baseweb="select"] {
-        max-width: 150px; /* Adjust based on longest dropdown option */
+    div[data-baseweb="select"] {
+        max-width: 180px;
     }
     </style>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 st.title("📄 Build Your Profile")
 
-col1, col2 = st.columns([1, 1])
+# --- Personal ---
+st.markdown("### 🧍 Personal Details")
+first_name = st.text_input("First Name", max_chars=50)
+last_name = st.text_input("Last Name", max_chars=50)
 
-with col1:
-    st.markdown("### 🧍 Personal Details")
-    first_name = st.text_input("First Name", max_chars=50)
-    last_name = st.text_input("Last Name", max_chars=50)
+# --- Property ---
+st.markdown("### 🏡 Subject Property")
+property_address = st.text_input("Property Address", max_chars=75)
+estimated_value = st.number_input("Estimated Value ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
+occupancy_type = st.selectbox("Intended Occupancy", ["Owner-Occupied", "Second Home", "Investment"])
+flood_zone = st.selectbox("Flood Zone", ["Yes", "No"], key="flood_zone")
+num_units = st.selectbox("# of Units", [1, 2, 3, 4], key="num_units")
 
-    st.markdown("### 🏡 Subject Property")
-    property_address = st.text_input("Property Address", max_chars=75)
-    estimated_value = st.number_input("Estimated Value ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
-    occupancy_type = st.selectbox("Intended Occupancy", ["Owner-Occupied", "Second Home", "Investment"])
+# --- Financial ---
+st.markdown("### 💵 Financial Information")
+cash_available = st.number_input("Cash Available to Close ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
+qualifying_income = st.number_input("Qualifying Income ($/year)", min_value=0.0, max_value=9999999999.00, step=1000.0)
+monthly_debts = st.number_input("Included Monthly Debts ($)", min_value=0.0, max_value=9999999999.00, step=100.0)
 
-    # Flood Zone
-    flood_col1, flood_col2 = st.columns([1, 3])
-    with flood_col1:
-        st.write("Flood Zone")
-    with flood_col2:
-        flood_zone = st.selectbox("", ["Yes", "No"], key="flood_zone")
+# --- Accessory Unit ---
+st.markdown("### 🏘️ Accessory Unit")
+accessory_unit = st.selectbox("Does the property have an accessory unit?", ["No", "Yes"], key="accessory_unit")
 
-    # Number of Units
-    units_col1, units_col2 = st.columns([1, 3])
-    with units_col1:
-        st.write("# of units")
-    with units_col2:
-        num_units = st.selectbox("", [1, 2, 3, 4], key="num_units")
+if accessory_unit == "Yes":
+    interior_separation = st.selectbox("Interior separation from primary unit?", ["No", "Yes"], key="interior_separation")
+    has_kitchen = st.selectbox("Kitchen with fridge, stove, sink?", ["No", "Yes"], key="has_kitchen")
+    has_bathroom = st.selectbox("Bathroom present?", ["No", "Yes"], key="has_bathroom")
 
-with col2:
-    st.markdown("### 💵 Financial Information")
-    cash_available = st.number_input("Cash Available to Close ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
-    qualifying_income = st.number_input("Qualifying Income ($/year)", min_value=0.0, max_value=9999999999.00, step=1000.0)
-    monthly_debts = st.number_input("Included Monthly Debts ($)", min_value=0.0, max_value=9999999999.00, step=100.0)
+    if all(ans == "Yes" for ans in [interior_separation, has_kitchen, has_bathroom]) and num_units == 1:
+        proposed_rent = st.number_input("Proposed Market Rent for Accessory Unit ($)", min_value=0.0)
 
-    st.markdown("### 🏘️ Accessory Unit")
-    # Accessory Unit
-    accessory_col1, accessory_col2 = st.columns([1, 3])
-    with accessory_col1:
-        st.write("Accessory Unit")
-    with accessory_col2:
-        accessory_unit = st.selectbox("", ["No", "Yes"], key="accessory_unit")
-
-    if accessory_unit == "Yes":
-        # Interior Separation
-        separation_col1, separation_col2 = st.columns([1, 3])
-        with separation_col1:
-            st.write("Interior separation from primary unit?")
-        with separation_col2:
-            interior_separation = st.selectbox("", ["No", "Yes"], key="interior_separation")
-
-        # Kitchen
-        kitchen_col1, kitchen_col2 = st.columns([1, 3])
-        with kitchen_col1:
-            st.write("Kitchen with fridge, stove, sink?")
-        with kitchen_col2:
-            has_kitchen = st.selectbox("", ["No", "Yes"], key="has_kitchen")
-
-        # Bathroom
-        bathroom_col1, bathroom_col2 = st.columns([1, 3])
-        with bathroom_col1:
-            st.write("Bathroom present?")
-        with bathroom_col2:
-            has_bathroom = st.selectbox("", ["No", "Yes"], key="has_bathroom")
-
-        if all(ans == "Yes" for ans in [interior_separation, has_kitchen, has_bathroom]) and num_units == 1:
-            proposed_rent = st.number_input("Proposed Market Rent for Accessory Unit ($)", min_value=0.0)
-
+# --- Submit ---
 st.button("✅ Save Profile")
