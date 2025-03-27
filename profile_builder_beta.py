@@ -18,8 +18,11 @@ st.markdown("""
     }
     .stToggle {
         display: flex;
-        align-items: flex-start !important;
-        margin-top: -1.25rem;
+        align-items: center !important;
+        margin-top: -0.1rem;
+    }
+.stToggle > label {
+        margin-top: -8px !important;
     }
 </style>
 """, unsafe_allow_html=True)
