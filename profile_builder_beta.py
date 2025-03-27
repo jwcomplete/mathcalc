@@ -47,7 +47,7 @@ with col1:
     with col_flood:
         flood_zone = st.selectbox("Flood Zone", ["Yes", "No"], key="flood_zone")
     with col_units:
-        num_units = st.selectbox("# of Units", [1, 2, 3, 4], key="num_units")
+        num_units = st.selectbox(" # of Units", [1, 2, 3, 4], key="num_units")
 
     st.markdown("### 🏘️ Accessory Unit")
     col_acc_q, col_acc_a = st.columns([5, 1])
