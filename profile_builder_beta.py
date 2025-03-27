@@ -6,6 +6,7 @@ st.set_page_config(page_title="Build Your Profile", layout="wide")
 # Custom CSS for input widths
 st.markdown("""
     <style>
+    .element-container:has(.stToggle) { display: flex; align-items: center; gap: 0.5rem; }
     div[data-baseweb="input"] input {
         max-width: 400px;
     }
@@ -17,8 +18,8 @@ st.markdown("""
     }
     .stToggle {
         display: flex;
-        align-items: center !important;
-        margin-top: 0.35rem;
+        align-items: flex-start !important;
+        margin-top: 0.15rem;
     }
 </style>
 """, unsafe_allow_html=True)
