@@ -30,7 +30,7 @@ with col1:
     st.markdown("### 🏡 Subject Property")
     property_address = st.text_input("Property Address", max_chars=75)
 
-    col_val, col_occ, col_flood, col_units = st.columns([1, 1, 1, 1])
+    col_val, col_occ, col_flood, col_units = st.columns([2.5, 2, 1.5, 1])
     with col_val:
         estimated_value = st.number_input("Estimated Value ($)", min_value=0.0, max_value=9999999999.00, step=1000.0)
     with col_occ:
