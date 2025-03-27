@@ -6,15 +6,15 @@ st.set_page_config(page_title="Build Your Profile", layout="wide")
 st.markdown("""
     <style>
     input[type="text"] {
-        width: 400px;
+        width: 500px;
     }
     .stNumberInput input {
-        width: 220px;
+        width: 260px;
     }
     .stSelectbox div[data-baseweb="select"] {
         width: auto;
-        min-width: 180px;
-        max-width: 250px;
+        min-width: 120px;
+        max-width: 220px;
     }
     </style>
 """, unsafe_allow_html=True)
