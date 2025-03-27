@@ -53,7 +53,7 @@ with col1:
             st.markdown("**Interior separation from primary unit?**")
         with col_sep_a:
             interior_separation = st.selectbox(" ", ["No", "Yes"], key="interior_separation")
-        col_kitch_q, col_kitch_a = st.columns([3, 4])
+        col_kitch_q, col_kitch_a = st.columns([3, 3])
         with col_kitch_q:
             st.markdown("**Kitchen with fridge, stove, sink?**")
         with col_kitch_a:
