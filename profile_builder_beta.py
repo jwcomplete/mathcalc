@@ -17,7 +17,7 @@ st.markdown("""
     }
     .stToggle {
         display: flex;
-        align-items: flex-start !important;
+        align-items: center !important;
         margin-top: 0.35rem;
     }
 </style>
